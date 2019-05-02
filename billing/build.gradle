@@ -1,0 +1,73 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        compileOptions {
+            encoding "UTF-8"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            android.libraryVariants.all { variant ->
+//                variant.outputs.all {
+//                    outputFileName = "billing-${defaultConfig.versionName}.aar"
+//                }
+//            }
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation "junit:junit:$rootProject.ext.junitVersion"
+    androidTestImplementation "com.android.support.test:runner:$rootProject.runnerVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
+
+    // amlzq base library
+    implementation 'com.amlzq.android:log:1.0.4'
+
+    // 支付宝 SDK AAR 包
+    implementation files('libs/alipaySdk-15.5.7-20181023110917.aar')
+    // compile (name: 'alipaySdk-15.5.7-20181023110917', ext: 'aar')
+}
+
+//apply plugin: 'com.novoda.bintray-release'
+//
+//buildscript {
+//    repositories {
+//        jcenter()
+//    }
+//    dependencies {
+//        classpath 'com.novoda:bintray-release:0.8.1'
+//    }
+//}
+//
+//// 解决注释里面有中文导致maven错误：编码GBK的不可映射字符
+//tasks.withType(Javadoc) { options.encoding = "UTF-8" }
+//
+//publish {
+//    userOrg = 'amlzq' // 组织用户名
+//    repoName = 'android-support-business' // maven类型仓库名称
+//    groupId = 'com.amlzq.android' //
+//    artifactId = 'billing'
+//    publishVersion = android.defaultConfig.versionName
+//    desc = 'android support billing api'
+//    website = 'https://github.com/amlzq/android-support-business/tree/android-support-billing'
+//    repository = 'https://github.com/amlzq/android-support-business.git'
+//}

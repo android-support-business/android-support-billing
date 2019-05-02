@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="payment_successful">支付成功</string>
+    <string name="payment_cancell">支付取消</string>
+    <string name="payment_failed">订单支付失败</string>
+    <string name="confirming_payment_result">正在确认支付结果</string>
+
+</resources>
