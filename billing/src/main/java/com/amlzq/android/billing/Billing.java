@@ -1,6 +1,6 @@
 package com.amlzq.android.billing;
 
-import com.amlzq.android.billing.alipay.AliPay;
+import com.amlzq.android.alipay.AliPay;
 
 /**
  * 结算助手

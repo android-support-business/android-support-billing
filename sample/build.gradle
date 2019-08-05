@@ -25,5 +25,10 @@ dependencies {
     androidTestImplementation "com.android.support.test:runner:$rootProject.runnerVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
 
+    // amlzq support library remote dependencies
+    implementation "com.amlzq.android:log:${rootProject.ext.logVersion}"
+    implementation "com.amlzq.android:annotations:${rootProject.ext.annotationsVersion}"
+    implementation "com.amlzq.android:utils:${rootProject.ext.utilsVersion}"
+
     implementation project(':billing')
 }

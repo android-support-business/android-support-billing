@@ -1,4 +1,4 @@
-package com.amlzq.android.billing.alipay;
+package com.amlzq.android.alipay;
 
 import android.app.Activity;
 import android.os.Handler;
@@ -11,9 +11,8 @@ import com.amlzq.android.log.Log;
 import java.util.Map;
 
 /**
-*
-* https://docs.open.alipay.com/204/105465/
-**/
+ * https://docs.open.alipay.com/204/105465/
+ **/
 
 public class AliPay {
     String TAG = "com.amlzq.android.billing.alipay.AliPay";

@@ -39,35 +39,29 @@ dependencies {
     androidTestImplementation "com.android.support.test:runner:$rootProject.runnerVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
 
-    // amlzq base library
-    implementation 'com.amlzq.android:log:1.0.4'
+    // amlzq support library remote dependencies
+    implementation "com.amlzq.android:log:${rootProject.ext.logVersion}"
+    implementation "com.amlzq.android:annotations:${rootProject.ext.annotationsVersion}"
+    implementation "com.amlzq.android:utils:${rootProject.ext.utilsVersion}"
 
     // 支付宝 SDK AAR 包
     implementation files('libs/alipaySdk-15.5.7-20181023110917.aar')
     // compile (name: 'alipaySdk-15.5.7-20181023110917', ext: 'aar')
 }
 
-//apply plugin: 'com.novoda.bintray-release'
-//
-//buildscript {
-//    repositories {
-//        jcenter()
-//    }
-//    dependencies {
-//        classpath 'com.novoda:bintray-release:0.8.1'
-//    }
-//}
-//
-//// 解决注释里面有中文导致maven错误：编码GBK的不可映射字符
-//tasks.withType(Javadoc) { options.encoding = "UTF-8" }
-//
-//publish {
-//    userOrg = 'amlzq' // 组织用户名
-//    repoName = 'android-support-business' // maven类型仓库名称
-//    groupId = 'com.amlzq.android' //
-//    artifactId = 'billing'
-//    publishVersion = android.defaultConfig.versionName
-//    desc = 'android support billing api'
-//    website = 'https://github.com/amlzq/android-support-business/tree/android-support-billing'
-//    repository = 'https://github.com/amlzq/android-support-business.git'
-//}
+// 以下是发布到本地 maven 仓库配置
+// 执行gradlew uploadArchives
+apply plugin: 'maven'
+
+// 获取local.properties的内容
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: properties.getProperty("mavenLocal"))
+        pom.groupId = "com.amlzq.android"
+        pom.artifactId = "billing"
+        pom.version = android.defaultConfig.versionName
+    }
+}

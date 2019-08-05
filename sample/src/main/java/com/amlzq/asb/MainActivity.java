@@ -7,7 +7,7 @@ import android.os.Message;
 import android.view.View;
 import android.widget.TextView;
 
-import com.amlzq.android.billing.alipay.AliPay;
+import com.amlzq.android.alipay.AliPay;
 
 public class MainActivity extends Activity {
 
